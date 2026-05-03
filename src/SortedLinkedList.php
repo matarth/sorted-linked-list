@@ -71,7 +71,7 @@ final class SortedLinkedList implements SortedLinkedListInterface
             return;
         }
 
-        if ($this->comparator->compare($this->root->getValue(), $value) === 0) {
+        if (0 === $this->comparator->compare($this->root->getValue(), $value)) {
             $this->root = $this->root->getNext();
             --$this->count; // @phpstan-ignore-line
 
@@ -81,7 +81,7 @@ final class SortedLinkedList implements SortedLinkedListInterface
         /** @var Node<T> $currentNode */
         $currentNode = $this->root;
         while (null !== $currentNode->getNext()) {
-            if ($this->comparator->compare($currentNode->getNext()->getValue(), $value) === 0) {
+            if (0 === $this->comparator->compare($currentNode->getNext()->getValue(), $value)) {
                 $currentNode->setNext($currentNode->getNext()->getNext());
                 --$this->count; // @phpstan-ignore-line
 
@@ -97,7 +97,7 @@ final class SortedLinkedList implements SortedLinkedListInterface
     public function contains(mixed $value): bool
     {
         foreach ($this as $nodeValue) {
-            if ($this->comparator->compare($nodeValue, $value) === 0) {
+            if (0 === $this->comparator->compare($nodeValue, $value)) {
                 return true;
             }
         }
