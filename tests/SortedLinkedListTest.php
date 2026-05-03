@@ -55,28 +55,28 @@ class SortedLinkedListTest extends TestCase
     {
         $list = SortedLinkedList::createIntLinkedList();
         $this->expectException(UnsupportedTypeException::class);
-        $list->add('string');
+        $list->add('string'); /* @phpstan-ignore-line */
     }
 
     public function testItThrowsExceptionIfValueIsNotValid2(): void
     {
         $list = SortedLinkedList::createStringLinkedList();
         $this->expectException(UnsupportedTypeException::class);
-        $list->add(1);
+        $list->add(1); /* @phpstan-ignore-line */
     }
 
     public function testItThrowsExceptionIfValueIsNotValid3(): void
     {
         $list = SortedLinkedList::createStringLinkedList();
         $this->expectException(UnsupportedTypeException::class);
-        $list->add((object) ['x']);
+        $list->add((object) ['x']); /* @phpstan-ignore-line */
     }
 
     public function testItThrowsExceptionIfValueIsNotValid4(): void
     {
         $list = SortedLinkedList::createStringLinkedList();
         $this->expectException(UnsupportedTypeException::class);
-        $list->add(null);
+        $list->add(null); /* @phpstan-ignore-line */
     }
 
 }

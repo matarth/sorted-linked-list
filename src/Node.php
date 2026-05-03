@@ -13,7 +13,7 @@ final class Node
     private ?self $next;
 
     /** @var T */
-    private mixed $value;
+    private readonly mixed $value;
 
     /**
      * @param T            $value
