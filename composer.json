@@ -12,7 +12,7 @@
             "name": "Matouš Kadrnoška"
         }
     ],
-    "minimum-stability": "dev",
+    "minimum-stability": "stable",
     "require-dev": {
         "phpunit/phpunit": "^13.2@dev",
         "phpstan/phpstan": "2.2.x-dev",
