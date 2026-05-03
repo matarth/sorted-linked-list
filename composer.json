@@ -1,0 +1,17 @@
+{
+    "name": "mt/sorted-linked-list",
+    "description": "A library providing sortedLinkedList for string and int input",
+    "type": "library",
+    "autoload": {
+        "psr-4": {
+            "Mt\\SortedLinkedList\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Matouš Kadrnoška"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {}
+}
