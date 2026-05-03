@@ -74,6 +74,7 @@ final class SortedLinkedList implements SortedLinkedListInterface
         if ($this->root->getValue() === $value) {
             $this->root = $this->root->getNext();
             --$this->count; // @phpstan-ignore-line
+
             return;
         }
 

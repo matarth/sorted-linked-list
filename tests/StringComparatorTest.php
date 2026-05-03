@@ -1,12 +1,17 @@
 <?php
+
 declare(strict_types=1);
 
 use Mt\SortedLinkedList\Comparator\StringComparator;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * @internal
+ *
+ * @coversNothing
+ */
 class StringComparatorTest extends TestCase
 {
-
     public function testItComparesStrings(): void
     {
         $this->assertEquals(-1, (new StringComparator())->compare('a', 'b'));
@@ -16,5 +21,4 @@ class StringComparatorTest extends TestCase
         $this->assertEquals(-1, (new StringComparator())->compare('aab', 'abc'));
         $this->assertEquals(-1, (new StringComparator())->compare('A', 'a'));
     }
-
 }
