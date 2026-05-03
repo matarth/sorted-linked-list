@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use Mt\SortedLinkedList\Enum\SortMethod;
 use Mt\SortedLinkedList\Exception\UnsupportedTypeException;
 use Mt\SortedLinkedList\SortedLinkedList;
 use PHPUnit\Framework\TestCase;
@@ -50,6 +51,16 @@ class SortedLinkedListTest extends TestCase
         self::assertEquals(3, $list->count());
     }
 
+    public function testItAddsIntValuesInDescendingOrder(): void
+    {
+        $list = SortedLinkedList::createIntLinkedList(SortMethod::DESC);
+        $list->add(1);
+        $list->add(4);
+        $list->add(2);
+        self::assertEquals([4, 2, 1], iterator_to_array($list->getIterator()));
+        self::assertEquals(3, $list->count());
+    }
+
     public function testItAddsStringValueToCorrectPosition(): void
     {
         $list = SortedLinkedList::createStringLinkedList();
@@ -58,6 +69,17 @@ class SortedLinkedListTest extends TestCase
         $list->add('abb');
         $list->add('b');
         self::assertEquals(['abb', 'abc', 'abd', 'b'], iterator_to_array($list->getIterator()));
+        self::assertEquals(4, $list->count());
+    }
+
+    public function testItAddsStringValuesInDescendingOrder(): void
+    {
+        $list = SortedLinkedList::createStringLinkedList(SortMethod::DESC);
+        $list->add('abc');
+        $list->add('abd');
+        $list->add('abb');
+        $list->add('b');
+        self::assertEquals(['b', 'abd', 'abc', 'abb'], iterator_to_array($list->getIterator()));
         self::assertEquals(4, $list->count());
     }
 

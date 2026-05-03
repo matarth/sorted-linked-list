@@ -47,6 +47,22 @@ foreach ($list as $value) {
 // 3
 ```
 
+Lists are sorted in ascending order by default. To sort values in descending
+order, pass `SortMethod::DESC`:
+
+```php
+use Mt\SortedLinkedList\Enum\SortMethod;
+
+$list = SortedLinkedList::createIntLinkedList(SortMethod::DESC);
+
+$list->add(3);
+$list->add(1);
+$list->add(2);
+
+iterator_to_array($list->getIterator());
+// [3, 2, 1]
+```
+
 Create a list for strings with `SortedLinkedList::createStringLinkedList()`:
 
 ```php
@@ -91,6 +107,8 @@ foreach ($list as $value) {
 
 To store custom values, implement `ComparatorInterface` and
 `ValueValidatorInterface`, then pass them to the `SortedLinkedList` constructor.
+The optional `method` constructor parameter accepts `SortMethod::ASC` or
+`SortMethod::DESC`; when omitted, it defaults to `SortMethod::ASC`.
 
 This example stores `Person` objects sorted by age:
 
@@ -100,6 +118,7 @@ This example stores `Person` objects sorted by age:
 declare(strict_types=1);
 
 use Mt\SortedLinkedList\Comparator\ComparatorInterface;
+use Mt\SortedLinkedList\Enum\SortMethod;
 use Mt\SortedLinkedList\SortedLinkedList;
 use Mt\SortedLinkedList\Validator\ValueValidatorInterface;
 
@@ -142,6 +161,7 @@ final class PersonValidator implements ValueValidatorInterface
 $people = new SortedLinkedList(
     comparator: new PersonAgeComparator(),
     valueValidator: new PersonValidator(),
+    method: SortMethod::ASC,
 );
 
 $people->add(new Person('Alice', 34));
