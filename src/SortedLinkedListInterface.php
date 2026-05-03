@@ -6,8 +6,9 @@ namespace Mt\SortedLinkedList;
 
 /**
  * @template T
+ * @extends \IteratorAggregate<int, T>
  */
-interface SortedLinkedListInterface extends \Countable
+interface SortedLinkedListInterface extends \Countable, \IteratorAggregate
 {
     /**
      * @param T $value
@@ -28,4 +29,9 @@ interface SortedLinkedListInterface extends \Countable
      * @return int<0,max>
      */
     public function count(): int;
+
+    /**
+     * @returns \IteratorAggregate<int, T>
+     */
+    public function getIterator(): \Traversable;
 }
