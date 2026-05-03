@@ -22,14 +22,16 @@ final class SortedLinkedList implements SortedLinkedListInterface
     private ?Node $root = null;
 
     /** @var int<0,max> */
-    private int $count = 0;
+    private int $count;
 
     private function __construct(
         /** @var ComparatorInterface<T> */
         private readonly ComparatorInterface $comparator,
         /** @var ValueValidatorInterface<T> */
         private readonly ValueValidatorInterface $valueValidator,
-    ) {}
+    ) {
+        $this->count = 0;
+    }
 
     /**
      * @param T $value
@@ -65,7 +67,27 @@ final class SortedLinkedList implements SortedLinkedListInterface
      */
     public function remove(mixed $value): void
     {
-        // TODO implement
+        if (null === $this->root) {
+            return;
+        }
+
+        if ($this->root->getValue() === $value) {
+            $this->root = $this->root->getNext();
+            --$this->count; // @phpstan-ignore-line
+            return;
+        }
+
+        /** @var Node<T> $currentNode */
+        $currentNode = $this->root;
+        while (null !== $currentNode->getNext()) {
+            if ($currentNode->getNext()->getValue() === $value) {
+                $currentNode->setNext($currentNode->getNext()->getNext());
+                --$this->count; // @phpstan-ignore-line
+
+                return;
+            }
+            $currentNode = $currentNode->getNext();
+        }
     }
 
     /**

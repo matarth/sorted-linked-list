@@ -6,6 +6,7 @@ namespace Mt\SortedLinkedList;
 
 /**
  * @template T
+ *
  * @extends \IteratorAggregate<int, T>
  */
 interface SortedLinkedListInterface extends \Countable, \IteratorAggregate

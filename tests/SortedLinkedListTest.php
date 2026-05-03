@@ -135,4 +135,74 @@ class SortedLinkedListTest extends TestCase
         self::assertFalse($list->contains('zzz'));
     }
 
+    public function testItRemovesValueFromList(): void
+    {
+        $list = SortedLinkedList::createIntLinkedList();
+        $list->add(1);
+        $list->add(2);
+        $list->add(3);
+        $list->remove(2);
+        self::assertEquals([1,3], iterator_to_array($list->getIterator()));
+        self::assertEquals(2, $list->count());
+    }
+
+    public function testItRemovesValueFromBeginningOfList(): void
+    {
+        $list = SortedLinkedList::createIntLinkedList();
+        $list->add(1);
+        $list->add(2);
+        $list->add(3);
+        $list->remove(1);
+        self::assertEquals([2,3], iterator_to_array($list->getIterator()));
+        self::assertEquals(2, $list->count());
+    }
+
+    public function testItRemovesValueFromEndOfList(): void
+    {
+        $list = SortedLinkedList::createIntLinkedList();
+        $list->add(1);
+        $list->add(2);
+        $list->add(3);
+        $list->remove(3);
+        self::assertEquals([1,2], iterator_to_array($list->getIterator()));
+        self::assertEquals(2, $list->count());
+    }
+
+    public function testItDoesNotFailToRemoveNonExistingValue(): void
+    {
+        $list = SortedLinkedList::createIntLinkedList();
+        $list->add(1);
+        $list->add(2);
+        $list->remove(4);
+        self::assertEquals([1,2], iterator_to_array($list->getIterator()));
+        self::assertEquals(2, $list->count());
+    }
+
+    public function testItRemovesSingleValueFromList(): void
+    {
+        $list = SortedLinkedList::createIntLinkedList();
+        $list->add(1);
+        $list->remove(1);
+        self::assertEquals([], iterator_to_array($list->getIterator()));
+        self::assertEquals(0, $list->count());
+    }
+
+    public function testItRemovesAllValuesFromList(): void
+    {
+        $list = SortedLinkedList::createIntLinkedList();
+        $list->add(1);
+        $list->add(2);
+        $list->remove(1);
+        $list->remove(2);
+        self::assertEquals([], iterator_to_array($list->getIterator()));
+        self::assertEquals(0, $list->count());
+    }
+
+    public function testItDoesNotFailToRemoveValueFromEmptyList(): void
+    {
+        $list = SortedLinkedList::createIntLinkedList();
+        $list->remove(1);
+        self::assertEquals([], iterator_to_array($list->getIterator()));
+    }
+
 }
