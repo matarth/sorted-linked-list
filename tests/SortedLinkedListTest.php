@@ -35,7 +35,7 @@ class SortedLinkedListTest extends TestCase
         self::assertEquals(3, $list->count());
     }
 
-    public function testIdAddsValueToBeginningOfList(): void
+    public function testItAddsValueToBeginningOfList(): void
     {
         $list = SortedLinkedList::createIntLinkedList();
         $list->add(1);

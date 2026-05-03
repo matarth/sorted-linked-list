@@ -7,7 +7,7 @@ namespace Mt\SortedLinkedList\Comparator;
 /**
  * @implements ComparatorInterface<int>
  */
-class IntComparator implements ComparatorInterface
+final class IntComparator implements ComparatorInterface
 {
     /**
      * @param int $a

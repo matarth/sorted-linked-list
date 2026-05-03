@@ -9,7 +9,7 @@ use Mt\SortedLinkedList\Exception\UnsupportedTypeException;
 /**
  * @implements ValueValidatorInterface<string>
  */
-class StringValueValidator implements ValueValidatorInterface
+final class StringValueValidator implements ValueValidatorInterface
 {
     /**
      * @param string $value

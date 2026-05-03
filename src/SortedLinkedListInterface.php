@@ -32,7 +32,7 @@ interface SortedLinkedListInterface extends \Countable, \IteratorAggregate
     public function count(): int;
 
     /**
-     * @returns \IteratorAggregate<int, T>
+     * @return \IteratorAggregate<int, T>
      */
     public function getIterator(): \Traversable;
 }
