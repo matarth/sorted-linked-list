@@ -73,7 +73,12 @@ final class SortedLinkedList implements SortedLinkedListInterface
      */
     public function contains(mixed $value): bool
     {
-        // TODO implement
+        foreach ($this as $nodeValue) {
+            if ($nodeValue === $value) {
+                return true;
+            }
+        }
+
         return false;
     }
 

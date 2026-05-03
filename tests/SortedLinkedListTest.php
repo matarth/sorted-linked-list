@@ -90,4 +90,49 @@ class SortedLinkedListTest extends TestCase
         self::assertEquals(0, $list->count());
     }
 
+    public function testEmptyListDoesNotContainValue(): void
+    {
+        $list = SortedLinkedList::createIntLinkedList();
+
+        self::assertFalse($list->contains(1));
+    }
+
+    public function testItContainsAddedIntValue(): void
+    {
+        $list = SortedLinkedList::createIntLinkedList();
+        $list->add(3);
+        $list->add(1);
+        $list->add(2);
+
+        self::assertTrue($list->contains(2));
+    }
+
+    public function testItDoesNotContainMissingIntValue(): void
+    {
+        $list = SortedLinkedList::createIntLinkedList();
+        $list->add(1);
+        $list->add(2);
+
+        self::assertFalse($list->contains(3));
+    }
+
+    public function testItContainsAddedStringValue(): void
+    {
+        $list = SortedLinkedList::createStringLinkedList();
+        $list->add('abc');
+        $list->add('abb');
+        $list->add('abd');
+
+        self::assertTrue($list->contains('abb'));
+    }
+
+    public function testItDoesNotContainMissingStringValue(): void
+    {
+        $list = SortedLinkedList::createStringLinkedList();
+        $list->add('abc');
+        $list->add('abb');
+
+        self::assertFalse($list->contains('zzz'));
+    }
+
 }
