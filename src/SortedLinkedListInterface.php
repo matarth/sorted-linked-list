@@ -7,7 +7,7 @@ namespace Mt\SortedLinkedList;
 /**
  * @template T
  */
-interface SortedLinkedListInterface
+interface SortedLinkedListInterface extends \Countable
 {
     /**
      * @param T $value
@@ -23,4 +23,9 @@ interface SortedLinkedListInterface
      * @param T $value
      */
     public function contains(mixed $value): bool;
+
+    /**
+     * @return int<0,max>
+     */
+    public function count(): int;
 }

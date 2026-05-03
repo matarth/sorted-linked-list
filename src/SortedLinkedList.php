@@ -21,6 +21,9 @@ final class SortedLinkedList implements SortedLinkedListInterface
     /** @var null|Node<T> */
     private ?Node $root = null;
 
+    /** @var int<0,max> */
+    private int $count = 0;
+
     private function __construct(
         /** @var ComparatorInterface<T> */
         private readonly ComparatorInterface $comparator,
@@ -35,11 +38,12 @@ final class SortedLinkedList implements SortedLinkedListInterface
     {
         $this->valueValidator->validate($value);
 
-        if ($this->root === null || $this->comparator->compare($value, $this->root->getValue()) < 0) {
+        if (null === $this->root || $this->comparator->compare($value, $this->root->getValue()) < 0) {
             $this->root = new Node(
                 next: $this->root,
                 value: $value,
             );
+            ++$this->count;
 
             return;
         }
@@ -53,7 +57,7 @@ final class SortedLinkedList implements SortedLinkedListInterface
             next: $currentNode->getNext(),
             value: $value,
         ));
-
+        ++$this->count;
     }
 
     /**
@@ -92,8 +96,7 @@ final class SortedLinkedList implements SortedLinkedListInterface
      */
     public function count(): int
     {
-        // TODO implement
-        return 0;
+        return $this->count;
     }
 
     /**

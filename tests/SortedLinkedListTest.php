@@ -13,6 +13,7 @@ class SortedLinkedListTest extends TestCase
         $list = SortedLinkedList::createIntLinkedList();
         $list->add(1);
         self::assertEquals([1], iterator_to_array($list->getIterator()));
+        self::assertEquals(1, $list->count());
     }
 
     public function testItAddsValueToEndOfList(): void
@@ -21,6 +22,7 @@ class SortedLinkedListTest extends TestCase
         $list->add(1);
         $list->add(2);
         self::assertEquals([1,2], iterator_to_array($list->getIterator()));
+        self::assertEquals(2, $list->count());
     }
 
     public function testItAddsValueToCorrectPosition(): void
@@ -30,6 +32,7 @@ class SortedLinkedListTest extends TestCase
         $list->add(4);
         $list->add(2);
         self::assertEquals([1,2,4], iterator_to_array($list->getIterator()));
+        self::assertEquals(3, $list->count());
     }
 
     public function testIdAddsValueToBeginningOfList(): void
@@ -39,6 +42,7 @@ class SortedLinkedListTest extends TestCase
         $list->add(2);
         $list->add(0);
         self::assertEquals([0,1,2], iterator_to_array($list->getIterator()));
+        self::assertEquals(3, $list->count());
     }
 
     public function testItAddsStringValueToCorrectPosition(): void
@@ -49,6 +53,7 @@ class SortedLinkedListTest extends TestCase
         $list->add('abb');
         $list->add('b');
         self::assertEquals(['abb','abc','abd', 'b'], iterator_to_array($list->getIterator()));
+        self::assertEquals(4, $list->count());
     }
 
     public function testItThrowsExceptionIfValueIsNotValid(): void
@@ -77,6 +82,12 @@ class SortedLinkedListTest extends TestCase
         $list = SortedLinkedList::createStringLinkedList();
         $this->expectException(UnsupportedTypeException::class);
         $list->add(null); /* @phpstan-ignore-line */
+    }
+
+    public function testEmptyListHasZeroCount(): void
+    {
+        $list = SortedLinkedList::createIntLinkedList();
+        self::assertEquals(0, $list->count());
     }
 
 }
