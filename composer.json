@@ -7,6 +7,17 @@
             "Mt\\SortedLinkedList\\": "src/"
         }
     },
+    "scripts": {
+        "test": "phpunit tests",
+        "cs": "php-cs-fixer fix --diff",
+        "cs:check": "php-cs-fixer fix --dry-run --diff",
+        "phpstan": "phpstan analyse -c phpstan.neon",
+        "check": [
+            "@cs:check",
+            "@phpstan",
+            "@test"
+        ]
+    },
     "authors": [
         {
             "name": "Matouš Kadrnoška"
