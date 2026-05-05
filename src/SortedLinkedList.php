@@ -69,6 +69,8 @@ final class SortedLinkedList implements SortedLinkedListInterface
      */
     public function remove(mixed $value): void
     {
+        $this->valueValidator->validate($value);
+
         if (null === $this->root) {
             return;
         }
@@ -98,6 +100,8 @@ final class SortedLinkedList implements SortedLinkedListInterface
      */
     public function contains(mixed $value): bool
     {
+        $this->valueValidator->validate($value);
+
         foreach ($this as $nodeValue) {
             if (0 === $this->compare($nodeValue, $value)) {
                 return true;
