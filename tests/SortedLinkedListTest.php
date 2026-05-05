@@ -111,6 +111,20 @@ class SortedLinkedListTest extends TestCase
         $list->add(null); // @phpstan-ignore-line
     }
 
+    public function testItThrowsExceptionIfRemovedValueIsNotValid(): void
+    {
+        $list = SortedLinkedList::createIntLinkedList();
+        $this->expectException(UnsupportedTypeException::class);
+        $list->remove('string'); // @phpstan-ignore-line
+    }
+
+    public function testItThrowsExceptionIfContainedValueIsNotValid(): void
+    {
+        $list = SortedLinkedList::createIntLinkedList();
+        $this->expectException(UnsupportedTypeException::class);
+        $list->contains('string'); // @phpstan-ignore-line
+    }
+
     public function testEmptyListHasZeroCount(): void
     {
         $list = SortedLinkedList::createIntLinkedList();
